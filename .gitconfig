@@ -1,0 +1,16 @@
+[user]
+	name = **********
+	email = **********
+[core]
+	editor = code --wait
+	ignorecase = false
+[color]
+	ui = true
+[alias]
+	st = status
+	df = diff
+	cm = commit
+	br = branch
+	ps = push
+	pl = pull
+	co = checkout
