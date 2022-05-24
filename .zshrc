@@ -1,4 +1,15 @@
 # ===========================
+# ========== PATH  ==========
+# ===========================
+# brew (handle for M1-Mac)
+if ! which brew > /dev/null; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
+
+# ===========================
 # ========== alias ==========
 # ===========================
 # exa-command
@@ -85,7 +96,4 @@ PS1=""$'\n'"%B%F{cyan}%~%f%b $ "
 
 # Ignore dupulicate command history
 setopt hist_ignore_dups
-
-# Rust PATH
-export PATH="$HOME/.cargo/bin:$PATH"
 
