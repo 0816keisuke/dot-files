@@ -1,5 +1,7 @@
-export PATH="$HOME/.cargo/bin:$PATH"
-
+# ===========================
+# ========== alias ==========
+# ===========================
+# exa-command
 alias ls="exa -F"
 alias la="exa -aF"
 alias ll="exa -hlF --git"
@@ -9,6 +11,31 @@ alias lta="exa -FTa"
 alias llt="exa -hlFT --git"
 alias llta="exa -hlFTa --git"
 
+# Delete .DS_Store
+alias delds="find . -name '.DS_Store' -delete"
+
+# Back-up local "lab/" data to server (eiwa) 
+function backup_lab() {
+    cd ~/lab || exit 1;
+    find . -name ".DS_Store" -delete;
+    cd ~ || exit 1;
+    rsync -avz lab eiwa:~/;
+}
+alias backuplab=backup_lab
+
+# Syncronize local "lab/" data to server (eiwa) 
+function backup_lab_sync() {
+    cd ~/lab || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -avz --delete lab eiwa:~/
+}
+alias synclab=backup_lab_sync
+
+
+# =====================================
+# ========== git on terminal ==========
+# =====================================
 # An function to display colored git branch name
 function prompt-git-current-branch {
   local branch_name st branch_status
@@ -49,5 +76,16 @@ setopt prompt_subst
 # Dipslay the function result right side of the prompt
 RPROMPT='`prompt-git-current-branch`'
 
+
+# ===============================
+# ========== Terminal  ==========
+# ===============================
 # Display only path on prompt & start a new line after command execution
 PS1=""$'\n'"%B%F{cyan}%~%f%b $ "
+
+# Ignore dupulicate command history
+setopt hist_ignore_dups
+
+# Rust PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
