@@ -2,6 +2,7 @@
 
 cp ~/.gitconfig ~/dot-files/
 cp ~/.zshrc ~/dot-files/
+cp ~/.vscode/argv.json ~/dot-files/
 
 echo "Complete backup of dot files."
 
