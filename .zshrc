@@ -91,6 +91,55 @@ function sync_ss() {
 }
 alias syncss=sync_ss
 
+# Back-up local "~/Desktop" data to server (eiwa) 
+function backup_desktop() {
+    cur_dir=$(pwd)
+    cd ~/Desktop || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz ~/Desktop eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias backupdesk=backup_desktop
+
+# Syncronize local "~/Desktop" data to server (eiwa) 
+function sync_desktop() {
+    cur_dir=$(pwd)
+    cd ~/Desktop || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz --delete ~/Desktop eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias syncdesk=sync_desktop
+
+# Back-up local dot-files to server (eiwa) 
+function backup_dot_files() {
+    cur_dir=$(pwd)
+    cd ~ || exit 1
+    rsync -ahvz ~/.aws eiwa:~/backup/dot-files/
+    rsync -ahvz ~/.gitconfig eiwa:~/backup/dot-files/
+    rsync -ahvz ~/.ssh eiwa:~/backup/dot-files/dot-files/
+    rsync -ahvz ~/.vscode/argv.json eiwa:~/backup/dot-files/.vscode/
+    rsync -ahvz ~/.zshrc eiwa:~/backup/dot-files/
+    cd "${cur_dir}" || exit 1
+}
+alias backupdot=backup_dot_files
+
+# Syncronize local dot-files to server (eiwa) 
+function sync_dot_files() {
+    cur_dir=$(pwd)
+    cd ~ || exit 1
+    rsync -ahvz ~/.aws eiwa:~/backup/dot-files/
+    rsync -ahvz ~/.gitconfig eiwa:~/backup/dot-files/
+    rsync -ahvz ~/.ssh eiwa:~/backup/dot-files/dot-files/
+    rsync -ahvz ~/.vscode/argv.json eiwa:~/backup/dot-files/.vscode/
+    rsync -ahvz ~/.zshrc eiwa:~/backup/dot-files/
+    cd "${cur_dir}" || exit 1
+}
+alias syncdot=sync_dot_files
+
+
 # =====================================
 # ========== git on terminal ==========
 # =====================================
