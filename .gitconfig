@@ -14,5 +14,3 @@
 	ps = push
 	pl = pull
 	co = checkout
-[fetch]
-	prune = true

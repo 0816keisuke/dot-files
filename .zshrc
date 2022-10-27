@@ -25,24 +25,71 @@ alias llta="exa -hlFTa --git"
 # Delete .DS_Store
 alias delds="find . -name '.DS_Store' -delete"
 
-# Back-up local "lab/" data to server (eiwa) 
+# Back-up local "~/lab" data to server (eiwa) 
 function backup_lab() {
-    cd ~/lab || exit 1;
-    find . -name ".DS_Store" -delete;
-    cd ~ || exit 1;
-    rsync -avz lab eiwa:~/;
-}
-alias backuplab=backup_lab
-
-# Syncronize local "lab/" data to server (eiwa) 
-function backup_lab_sync() {
+    cur_dir=$(pwd)
     cd ~/lab || exit 1
     find . -name ".DS_Store" -delete
     cd ~ || exit 1
-    rsync -avz --delete lab eiwa:~/
+    rsync -ahvz ~/lab eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
 }
-alias synclab=backup_lab_sync
+alias backuplab=backup_lab
 
+# Syncronize local "~/lab" data to server (eiwa) 
+function sync_lab() {
+    cur_dir=$(pwd)
+    cd ~/lab || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz --delete ~/lab eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias synclab=sync_lab
+
+# Back-up local "~/dev" data to server (eiwa) 
+function backup_dev() {
+    cur_dir=$(pwd)
+    cd ~/dev || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz ~/dev eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias backupdev=backup_dev
+
+# Syncronize local "~/dev" data to server (eiwa) 
+function sync_dev() {
+    cur_dir=$(pwd)
+    cd ~/dev || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz --delete ~/dev eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias syncdev=sync_dev
+
+# Back-up local "~/spaceshift" data to server (eiwa) 
+function backup_ss() {
+    cur_dir=$(pwd)
+    cd ~/spaceshift || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz ~/spaceshift eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias backupss=backup_ss
+
+# Syncronize local "~/spaceshift" data to server (eiwa) 
+function sync_ss() {
+    cur_dir=$(pwd)
+    cd ~/spaceshift || exit 1
+    find . -name ".DS_Store" -delete
+    cd ~ || exit 1
+    rsync -ahvz --delete ~/spaceshift eiwa:~/backup/
+    cd "${cur_dir}" || exit 1
+}
+alias syncss=sync_ss
 
 # =====================================
 # ========== git on terminal ==========
