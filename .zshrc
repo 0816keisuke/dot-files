@@ -193,3 +193,4 @@ PS1=""$'\n'"%B%F{cyan}%~%f%b $ "
 # Ignore dupulicate command history
 setopt hist_ignore_dups
 
+eval "$(starship init zsh)"
